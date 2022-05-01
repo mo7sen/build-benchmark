@@ -2,11 +2,11 @@
 
 NPROC=$((2*$(nproc)))
 
-targets="kbuild nrecur static cmake boilermake cninja ninja"
+targets="kbuild nrecur static cmake cninja ninja meson"
 
 function build_targets {
 	for target in $targets; do
-		echo "$target:"
+		echo -n "$target: "
 		command time -f %e make $target -j$NPROC 1> /dev/null
 		sync
 	done
